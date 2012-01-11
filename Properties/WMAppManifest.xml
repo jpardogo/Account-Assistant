@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{350ca006-cda8-4795-818f-144fbd6ea8c9}" 
+  Title="Account Assistant" 
+  RuntimeType="Silverlight" 
+  Version="1.0.0.0" 
+  Genre="apps.normal"
+  Author="Javier Pardo de Santayana Gómez" 
+  Description="Personal assistant to manage your everyday accounts" 
+  Publisher="Account_Assistant">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_MEDIALIB" />
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="Account_AssistantToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>AccountAssistant</Title>
+          <BackBackgroundImageUri IsRelative="true" IsResource="false"></BackBackgroundImageUri>
+          <BackTitle></BackTitle>
+          <BackContent></BackContent>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>

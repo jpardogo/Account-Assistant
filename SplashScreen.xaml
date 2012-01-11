@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Account_Assistant.SplashScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+   
+    mc:Ignorable="d"
+             
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+             
+    Foreground="{StaticResource PhoneForegroundBrush}"
+             
+   d:DesignWidth="480" d:DesignHeight="800">
+
+    <Canvas>
+
+		<Grid x:Name="LayoutRoot" 
+              Background="{StaticResource PhoneAccentBrush}" 
+              Height="800" 
+              Width="480">
+            
+            <TextBlock x:Name="TextBlockAccountAssistant" 
+                       Height="86" 
+                       Margin="0,206,72,0" 
+                       TextWrapping="Wrap" 
+                       Foreground="White" 
+                       VerticalAlignment="Top" 
+                       FontSize="32" 
+                       HorizontalAlignment="Right" 
+                       Width="142" 
+                       TextAlignment="Center">
+                <Run Text="{Binding Path=LocalizedResources.ApplicationTitlePart1, Source={StaticResource LocalizedStrings}}"/>
+                <LineBreak/>
+                <Run Text="{Binding Path=LocalizedResources.ApplicationTitlePart2, Source={StaticResource LocalizedStrings}}"/>
+            </TextBlock>
+            
+			<toolkit:PerformanceProgressBar IsIndeterminate="True" 
+                                            Height="38"
+                                            Margin="164,0,166,296" 
+                                            VerticalAlignment="Bottom" 
+                                            Background="{StaticResource PhoneAccentBrush}" 
+                                            RenderTransformOrigin="1.23,0.579" 
+                                            Foreground="White"/>
+            
+            <TextBlock x:Name="TextBlockLoading" 
+                       Height="38" 
+                       Margin="180,0,166,334" 
+                       TextWrapping="Wrap" 
+                       Foreground="White" 
+                       Text="{Binding Path=LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}" 
+                       VerticalAlignment="Bottom"/>
+            
+			<Image Height="152"
+                   Margin="66,168,238,0" 
+                   Source="images/Wallet.png" 
+                   Stretch="Fill" 
+                   VerticalAlignment="Top"/>
+
+		</Grid>
+        
+	</Canvas>
+    
+</UserControl>

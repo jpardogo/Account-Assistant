@@ -1,0 +1,206 @@
+﻿<phone:PhoneApplicationPage 
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+	xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+	
+    x:Class="Account_Assistant.AddNew"
+	
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	
+    Foreground="{StaticResource PhoneForegroundBrush}"
+	
+    Orientation="Portrait"
+	shell:SystemTray.IsVisible="True">
+	
+    <phone:PhoneApplicationPage.Resources>
+		<Style x:Key="PopupTemplate" TargetType="Popup"/>
+	</phone:PhoneApplicationPage.Resources>
+	
+	
+
+	
+	<!--LayoutRoot is the root grid where all page content is placed-->
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+        
+		<Grid.RowDefinitions>
+            
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel x:Name="TitlePanel" 
+					Grid.Row="0" 
+					Margin="12,17,0,28">
+			<TextBlock 	x:Name="ApplicationTitle" 
+						Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" 
+						Style="{StaticResource PhoneTextNormalStyle}">
+			</TextBlock>
+			<TextBlock 	x:Name="PageTitle" 
+						Text="{Binding Path=LocalizedResources.Addnew, Source={StaticResource LocalizedStrings}}" 
+						Margin="9,-7,0,0" 
+						Style="{StaticResource PhoneTextTitle1Style}">
+			</TextBlock>
+		</StackPanel>
+
+        <Grid>
+			<Popup  x:Name="popupConfirm"  
+                    IsOpen="False" >
+                
+				<Grid   Background="{StaticResource PhoneChromeBrush}" 
+					    Height="300" Width="480">
+                    
+					<TextBlock 	x:Name="TextBoxPopupConfirm2" 
+						        Foreground="#FFE9D8D8"
+						        Margin="24,0,0,200"
+						        TextWrapping="Wrap"
+						        VerticalAlignment="Center" 
+                                Style="{StaticResource PhoneTextNormalStyle}" 
+                                Text="{Binding Path=LocalizedResources.Confirmation, Source={StaticResource LocalizedStrings}}" 
+                                FontSize="26.667" FontWeight="Bold" 
+                                HorizontalAlignment="Left"/>
+                    
+					<TextBlock 	x:Name="TextBoxPopupConfirm" 
+						        Foreground="#FFE9D8D8"
+						        Margin="24,0,16,0"
+						        VerticalAlignment="Center" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" Height="140"/>		
+                    
+					<Button x:Name="ButonAcceptPopup"
+						    Background="{StaticResource PhoneChromeBrush}"
+						    BorderThickness="2"
+						    Click="ButonAcceptPopup_Click" 
+						    Content="{Binding Path=LocalizedResources.Accept, Source={StaticResource LocalizedStrings}}"
+						    Height="70" Width="200" 
+						    Margin="40,0,240,0" 
+                            VerticalAlignment="Bottom"/>
+                    
+					<Button x:Name="ButonCancelPopup"
+						    Background="{StaticResource PhoneChromeBrush}"
+						    BorderThickness="2"
+						    Click="ButonCancelPopup_Click" 
+						    Content="{Binding Path=LocalizedResources.Cancel, Source={StaticResource LocalizedStrings}}"
+						    Height="70" Width="200" 
+						    Margin="240,0,40,0" 
+                            VerticalAlignment="Bottom"/>
+                    
+				</Grid>
+			</Popup>
+            
+        </Grid>
+        
+		<Grid x:Name="ContentPanel" 
+			    Loaded="ChooseSelection_Loaded" 
+			    Margin="12,0,12,-8" 
+			    Grid.Row="1"  
+			    RenderTransformOrigin="0.491,0.484" 
+                Height="535" 
+                VerticalAlignment="Bottom" >
+            
+			<TextBlock 	x:Name="TextBlockType"
+				        Height="41" 
+				        TextWrapping="Wrap" 
+				        Text="{Binding Path=LocalizedResources.WhatAdd, Source={StaticResource LocalizedStrings}}" 
+                        Margin="24,8,181,0" 
+                        VerticalAlignment="Top"/>
+
+            <RadioButton 	x:Name="ChargeRadioButton" 
+                            IsChecked="{Binding chargeRadioButton}" 
+				            Content="{Binding Path=LocalizedResources.Charge, Source={StaticResource LocalizedStrings}}"
+				            Height="74" 
+                            Margin="24,53,221,0" 
+                            VerticalAlignment="Top"/>
+			
+			<RadioButton 	x:Name="LoanRadioButton" 
+				            Content="{Binding Path=LocalizedResources.Loan, Source={StaticResource LocalizedStrings}}"  
+				            Height="70" 
+                            Width="209" 
+				            HorizontalAlignment="Right" 
+                            Margin="0,53,24,0" 
+                            VerticalAlignment="Top"/>
+			
+			<TextBlock 	x:Name="TextBlockAmount" 
+				        Height="41" 
+                        Width="88" 
+				        TextWrapping="Wrap" 
+                        Text="{Binding Path=LocalizedResources.Amount, Source={StaticResource LocalizedStrings}}" 
+                        HorizontalAlignment="Left" Margin="24,139,0,0" 
+                        VerticalAlignment="Top"/>
+			
+			<TextBox 	x:Name="TextBoxAmount" 
+				        Height="71"   
+				        KeyDown="TextBoxAmount_KeyDown" 
+				        TextChanged="OnTextChanged" 
+				        TextWrapping="Wrap" 
+                        Text="{Binding Amount}"
+                        Margin="211,127,8,0" VerticalAlignment="Top">
+				
+				<TextBox.InputScope>
+					<InputScope>
+						<InputScopeName  NameValue="Number"/>
+					</InputScope>
+				</TextBox.InputScope>
+                
+			</TextBox>
+			
+			<TextBlock 	x:Name="TextBlockPerson" 
+                        Width="126"  
+				        TextWrapping="Wrap" 
+                        HorizontalAlignment="Left" 
+                        Margin="24,206,0,263">
+                        <Run Text="{Binding Path=LocalizedResources.PersonToPay, Source={StaticResource LocalizedStrings}}"/>
+            </TextBlock>
+            
+			<Button x:Name="ButtonSelectPerson" 
+				    Content="{Binding Path=LocalizedResources.SelectContact, Source={StaticResource LocalizedStrings}}" 
+				    Click="btnSelectContact_Click"
+					Margin="211,202,8,263"/>
+			
+			<TextBlock 	x:Name="TextBlockPersonChoosen" 
+                        Text="{Binding Person}" 
+                        MaxWidth="318" Height="35" 
+                        Margin="223,0,24,224" 
+                        VerticalAlignment="Bottom"/>
+			
+            <TextBlock 	x:Name="TextBlockPersonChoosenPhone" 
+				        Height="35" 
+				        TextWrapping="Wrap" 
+                        Text="{Binding phone}" 
+                        Margin="223,0,24,185" 
+                        VerticalAlignment="Bottom"/>
+			
+			<TextBlock 	x:Name="TextBlockReference" 
+				        Width="114" 
+				        RenderTransformOrigin="0.505,0.481" 
+				        TextWrapping="Wrap" 
+				        HorizontalAlignment="Left" 
+                        Margin="24,354,0,148" 
+                        Text="{Binding Path=LocalizedResources.Reference, Source={StaticResource LocalizedStrings}}">
+                
+            </TextBlock>
+			
+			<TextBox 	x:Name="TextBoxReference" 
+				        Height="91" 
+				        TextChanged="OnTextChanged" 
+				        TextWrapping="Wrap" 
+                        Text="{Binding reference}"
+                        Margin="211,0,8,94" 
+                        VerticalAlignment="Bottom"/>
+            
+			<Image x:Name="ImageReference"  
+                   Stretch="Fill" 
+                   Width="151" 
+                   Height="116" 
+                   HorizontalAlignment="Left" 
+                   Margin="24,0,0,28" 
+                   VerticalAlignment="Bottom" />
+		</Grid>
+        <!--ContentPanel - place additional content here-->
+		
+	</Grid>
+</phone:PhoneApplicationPage>
